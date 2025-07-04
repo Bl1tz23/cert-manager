@@ -332,6 +332,8 @@ func buildControllerContextFactory(ctx context.Context, opts *config.ControllerC
 			DNS01CheckAuthoritative: !opts.ACMEDNS01Config.RecursiveNameserversOnly,
 
 			AccountRegistry: acmeAccountRegistry,
+
+			DNS01PropagationTime: opts.ACMEDNS01Config.PropagationTime,
 		},
 
 		SchedulerOptions: controller.SchedulerOptions{

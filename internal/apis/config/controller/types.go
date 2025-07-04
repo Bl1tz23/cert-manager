@@ -222,4 +222,6 @@ type ACMEDNS01Config struct {
 	// token is served at the challenge URL. This should be a valid duration
 	// string, for example 180s or 1h
 	CheckRetryPeriod time.Duration
+
+	PropagationTime time.Duration
 }
