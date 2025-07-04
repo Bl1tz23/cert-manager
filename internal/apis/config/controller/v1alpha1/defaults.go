@@ -77,6 +77,7 @@ var (
 	defaultDNS01RecursiveNameserversOnly = false
 	defaultDNS01RecursiveNameservers     = []string{}
 	defaultDNS01CheckRetryPeriod         = 10 * time.Second
+	defaultDNS01PropagationTime          = 10 * time.Second
 
 	defaultNumberOfConcurrentWorkers int32 = 5
 	defaultMaxConcurrentChallenges   int32 = 60
@@ -328,5 +329,9 @@ func SetDefaults_ACMEDNS01Config(obj *v1alpha1.ACMEDNS01Config) {
 
 	if obj.CheckRetryPeriod.IsZero() {
 		obj.CheckRetryPeriod = sharedv1alpha1.DurationFromTime(defaultDNS01CheckRetryPeriod)
+	}
+
+	if obj.PropagationTime.IsZero() {
+		obj.PropagationTime = sharedv1alpha1.DurationFromTime(defaultDNS01PropagationTime)
 	}
 }

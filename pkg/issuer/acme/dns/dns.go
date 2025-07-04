@@ -126,9 +126,8 @@ func (s *Solver) Check(ctx context.Context, issuer v1.GenericIssuer, ch *cmacme.
 		return fmt.Errorf("DNS record for %q not yet propagated", ch.Spec.DNSName)
 	}
 
-	ttl := 60
-	log.V(logf.DebugLevel).Info("waiting DNS record TTL to allow the DNS01 record to propagate for domain", "ttl", ttl, "fqdn", fqdn)
-	time.Sleep(time.Second * time.Duration(ttl))
+	log.V(logf.DebugLevel).Info("waiting DNS record TTL to allow the DNS01 record to propagate for domain", "ttl", s.Context.ACMEOptions.DNS01PropagationTime, "fqdn", fqdn)
+	time.Sleep(time.Second * time.Duration(s.Context.ACMEOptions.DNS01PropagationTime))
 	log.V(logf.DebugLevel).Info("ACME DNS01 validation record propagated", "fqdn", fqdn)
 
 	return nil
